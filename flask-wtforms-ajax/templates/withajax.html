@@ -1,0 +1,59 @@
+{% extends '_base.html' %}
+
+{% block page %}
+<form id="form" method="POST">
+    <div class="form-group">
+        {{ form.username.label }}
+        {{ form.username(class='form-control') }}
+        <div id="username-error" class="invalid-feedback"></div>
+    </div>
+    <div class="form-group">
+        {{ form.age.label }}
+        {{ form.age(class='form-control') }}
+        <div id="age-error" class="invalid-feedback"></div>
+    </div>
+    <button class="btn btn-primary">Signup</button>
+</form>
+<div id="success-message" style="display: none;"></script>
+<script>
+const form = document.getElementById('form');
+const successMessage = document.getElementById('success-message');
+const fields = {
+    username: {
+        input: document.getElementById('username'),
+        error: document.getElementById('username-error')
+    },
+    age: {
+        input: document.getElementById('age'),
+        error: document.getElementById('age-error')
+    }
+}
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    fields.username.input.classList.remove('is-invalid');
+    fields.age.input.classList.remove('is-invalid');
+    const response = await fetch('/withajax', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: fields.username.input.value,
+            age: fields.age.input.value
+        })
+    });
+    if (response.ok) {
+        successMessage.innerHTML = await response.text();
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
+    } else {
+        const errors = await response.json();
+        Object.keys(errors).forEach((key) => {
+           fields[key].input.classList.add('is-invalid');
+           fields[key].error.innerHTML = errors[key][0];
+        });
+    }
+});
+</script>
+{% endblock %}
