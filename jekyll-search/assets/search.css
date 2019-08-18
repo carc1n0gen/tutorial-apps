@@ -1,0 +1,27 @@
+.search-wrapper {
+    float: right;
+    position: relative;
+}
+
+.site-search {
+    margin: 18px 20px;
+    width: 180px;
+}
+
+.search-results {
+    position: absolute;
+    top: 38px;
+    left: 20px;
+    width: 165px;
+}
+
+.search-results ul {
+    margin: 0;
+}
+
+.search-results li {
+    padding: 10px;
+    list-style: none;
+    background-color: #eee;
+    width: 100%;
+}

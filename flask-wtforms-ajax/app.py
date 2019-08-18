@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import NumberRange, Length
@@ -14,6 +14,11 @@ class Form(FlaskForm):
     age = IntegerField('Age', [
         NumberRange(min=14, message='You must be %(min)s or older to sign up')
     ])
+
+
+@app.route('/')
+def index():
+    return redirect(url_for('traditional'))
 
 
 @app.route('/traditional', methods=['GET', 'POST'])

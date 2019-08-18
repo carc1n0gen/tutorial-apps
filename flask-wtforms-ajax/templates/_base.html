@@ -7,6 +7,24 @@
 </head>
 <body>
     <div class="container">
+    <nav class="nav nav-pills my-2">
+        <span class="nav-item">
+            <a 
+                class="nav-link {{ 'active' if active == 'traditional' }}"
+                href="{{ url_for('traditional') }}"
+            >
+                Traditional
+            </a>
+        </span>
+        <span class="nav-item">
+            <a 
+                class="nav-link {{ 'active' if active == 'withajax' }}"
+                href="{{ url_for('withajax') }}"
+            >
+                With Ajax
+            </a>
+        </span>
+    </nav>
     {% block page %}Nothing here{% endblock %}
     </div>
 </body>
