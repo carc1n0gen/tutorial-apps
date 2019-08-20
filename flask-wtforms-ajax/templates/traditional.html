@@ -3,6 +3,7 @@
 
 {% block page %}
 <form method="POST">
+    {{ form.csrf_token }}
     <div class="form-group">
         {% set class = 'form-control is-invalid' if form.username.errors else 'form-control' %}
         {{ form.username.label }}

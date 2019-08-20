@@ -4,7 +4,7 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import NumberRange, Length
 
 app = Flask(__name__)
-app.config['WTF_CSRF_ENABLED'] = False # Don't do this in the real world!
+app.config['SECRET_KEY'] = 'NOT SO SECRET'
 
 
 class Form(FlaskForm):

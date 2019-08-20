@@ -3,6 +3,10 @@
 
 {% block page %}
 <form id="form" method="POST">
+    {{ form.csrf_token }}
+    <div class="text-danger my-2" id="csrf_token-error">
+    </div>
+    
     <div class="form-group">
         {{ form.username.label }}
         {{ form.username(class='form-control') }}
@@ -20,6 +24,10 @@
 const form = document.getElementById('form');
 const successMessage = document.getElementById('success-message');
 const fields = {
+    csrf_token: {
+        input: document.getElementById('csrf_token'),
+        error: document.getElementById('csrf_token-error')
+    },
     username: {
         input: document.getElementById('username'),
         error: document.getElementById('username-error')
@@ -32,14 +40,13 @@ const fields = {
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    fields.username.input.classList.remove('is-invalid');
-    fields.age.input.classList.remove('is-invalid');
     const response = await fetch('/withajax', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            csrf_token: fields.csrf_token.input.value,
             username: fields.username.input.value,
             age: fields.age.input.value
         })
