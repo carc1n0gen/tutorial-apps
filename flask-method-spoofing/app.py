@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Request as FlaskRequest
+from flask import Flask, render_template, request, Request
 from werkzeug.formparser import parse_form_data
 
 
@@ -44,7 +44,7 @@ class MethodSpooferMiddleware():
         return self.app(environ, start_response)
 
 
-class Request(FlaskRequest):
+class CustomRequest(Request):
     """
     A custom request object that checks for previously processed form data
     instead of possibly processing form data twice.
@@ -68,7 +68,7 @@ class Request(FlaskRequest):
 
 
 app = Flask(__name__)
-app.request_class = Request
+app.request_class = CustomRequest
 app.wsgi_app = MethodSpooferMiddleware(app.wsgi_app)
 
 
