@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block page %}
+
+<h1>Signin</h1>
+<form method="POST">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username">
+    <br>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+    <button type="submit">signin</button>
+    <p>Don't have an account? <a href="/signup">signup instead</a></p>
+</form>
+
+{% endblock %}

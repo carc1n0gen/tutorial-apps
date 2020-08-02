@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% if is_loggedin() %}
+    <form action="/signout" method="POST">
+        <button type="submit">signout</button>
+    </form>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <p>{{ messages[0] }}</p>
+    {% endif %}
+    {% endwith %}
+    <main>{% block page %}{% endblock %}</main>
+</html>

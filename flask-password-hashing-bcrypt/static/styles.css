@@ -1,0 +1,19 @@
+html {
+    background-color: #eee;
+    font-size: 18px;
+}
+
+body {
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 768px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+}
