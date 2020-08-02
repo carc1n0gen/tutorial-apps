@@ -1,4 +1,4 @@
-This is the sample app for my blog post [Validating AJAX Requests With WTForms In Flask](https://blog.carsonevans.ca/2019/08/20/validating-ajax-requests-with-wtforms-in-flask/).
+This is the sample app for my blog post [Request Method Spoofing In Flask](https://blog.carsonevans.ca/2020/07/06/request-method-spoofing-in-flask/).
 
 To run:
 
