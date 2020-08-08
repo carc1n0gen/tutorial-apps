@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function closeModal(modal) {
+        const backdrop = document.querySelector('.modal-backdrop.fade.show');
+        modal.setAttribute('aria-hidden', 'true');
+        backdrop.classList.remove('show');
+        setTimeout(() => {
+          modal.classList.remove('show');
+        });
+        setTimeout(() => {
+          modal.style.display = 'none';
+          backdrop.remove();
+        }, 500);
+      }
+       
+      function openModal(modal) {
+        const backdrop = document.createElement('div');
+        backdrop.classList.add('modal-backdrop', 'fade');
+        document.body.classList.add('modal-open');
+        document.body.appendChild(backdrop);
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false', 'show');
+        setTimeout(() => {
+          modal.classList.add('show');
+          backdrop.classList.add('show');
+        });
+      }
+
+      window.addEventListener('load', () => {
+        document.querySelectorAll('[data-toggle=modal]').forEach((element) => {
+          element.addEventListener('click', () => {
+            const target = element.dataset.target;
+            const modal = document.querySelector(target);
+            if (modal) {
+              openModal(modal);
+            }
+          });
+        });
+
+        document.querySelectorAll('[data-dismiss=modal]').forEach((element) => {
+          element.addEventListener('click', () => {
+            const modal = document.querySelector('.modal.show');
+            if (modal) {
+              closeModal(modal);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
