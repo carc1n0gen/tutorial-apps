@@ -74,6 +74,14 @@
             }
           });
         });
+
+        document.querySelectorAll('.modal').forEach((modal) => {
+          modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+              closeModal(modal);
+            }
+          });
+        });
       });
     </script>
   </body>
